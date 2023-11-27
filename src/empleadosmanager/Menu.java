@@ -5,7 +5,13 @@
  */
 package empleadosmanager;
 
-import java.awt.Dimension;
+import java.io.EOFException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -13,12 +19,12 @@ import java.awt.Dimension;
  */
 public class Menu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Menu
-     */
+    EmpleadosManager emp;
+
     public Menu() {
         initComponents();
-        AGREGAREMPLEADO.setPreferredSize(new Dimension(800, 600));
+        setLocationRelativeTo(null);
+        emp = new EmpleadosManager();
     }
 
     /**
@@ -32,60 +38,52 @@ public class Menu extends javax.swing.JFrame {
 
         AGREGAREMPLEADO = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jButton8 = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jLabel4 = new javax.swing.JLabel();
+        txtSalario = new javax.swing.JTextField();
+        AGREARALEMPLEADO = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        AGREGARVENTAEMPLEADO = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        txtCodigoEmpleado = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtMontoVenta = new javax.swing.JTextField();
+        AGREGARVENTA = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         LOGO = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        LISTAR_EMPLEADOS = new javax.swing.JButton();
+        AGREGAR_VENTA = new javax.swing.JButton();
+        PAGAR_EMPLEADO = new javax.swing.JButton();
+        DESPEDIR_EMPLEADO = new javax.swing.JButton();
         CREARR = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        SALIR = new javax.swing.JButton();
 
         AGREGAREMPLEADO.setTitle("AGREGAR EMPLEADO");
         AGREGAREMPLEADO.setBackground(new java.awt.Color(255, 255, 255));
         AGREGAREMPLEADO.setLocation(new java.awt.Point(5, 5));
-        AGREGAREMPLEADO.setPreferredSize(new java.awt.Dimension(550, 480));
-        AGREGAREMPLEADO.setSize(new java.awt.Dimension(550, 480));
+        AGREGAREMPLEADO.setPreferredSize(new java.awt.Dimension(395, 345));
+        AGREGAREMPLEADO.setSize(new java.awt.Dimension(395, 345));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel1.setText("Codigo:");
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel2.setText("Nombre:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-
         jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel3.setText("Salario:");
 
-        jButton8.setBackground(new java.awt.Color(0, 51, 153));
-        jButton8.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setText("AGREGAR");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        AGREARALEMPLEADO.setBackground(new java.awt.Color(0, 51, 153));
+        AGREARALEMPLEADO.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        AGREARALEMPLEADO.setForeground(new java.awt.Color(255, 255, 255));
+        AGREARALEMPLEADO.setText("AGREGAR");
+        AGREARALEMPLEADO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                AGREARALEMPLEADOActionPerformed(evt);
             }
         });
-
-        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel4.setText("Fecha de Contratacion:");
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel5.setText("AGREGAR EMPLEADO");
@@ -94,61 +92,44 @@ public class Menu extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton8)
-                .addGap(48, 48, 48))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(74, 74, 74)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtSalario))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
+                        .addGap(97, 97, 97)
                         .addComponent(jLabel5)))
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(AGREARALEMPLEADO)
+                .addGap(77, 77, 77))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(39, 39, 39)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4))
-                .addGap(36, 36, 36)
-                .addComponent(jButton8)
-                .addGap(38, 38, 38))
+                .addGap(58, 58, 58)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addComponent(AGREARALEMPLEADO)
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout AGREGAREMPLEADOLayout = new javax.swing.GroupLayout(AGREGAREMPLEADO.getContentPane());
@@ -162,6 +143,88 @@ public class Menu extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        AGREGARVENTAEMPLEADO.setTitle("AGREGAR EMPLEADO");
+        AGREGARVENTAEMPLEADO.setBackground(new java.awt.Color(255, 255, 255));
+        AGREGARVENTAEMPLEADO.setLocation(new java.awt.Point(5, 5));
+        AGREGARVENTAEMPLEADO.setPreferredSize(new java.awt.Dimension(410, 370));
+        AGREGARVENTAEMPLEADO.setSize(new java.awt.Dimension(410, 370));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setMaximumSize(new java.awt.Dimension(460, 460));
+        jPanel3.setPreferredSize(new java.awt.Dimension(460, 370));
+
+        jLabel6.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel6.setText("Codigo de Empleado:");
+
+        jLabel8.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel8.setText("Monto de la Venta:");
+
+        AGREGARVENTA.setBackground(new java.awt.Color(153, 0, 0));
+        AGREGARVENTA.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        AGREGARVENTA.setForeground(new java.awt.Color(255, 255, 255));
+        AGREGARVENTA.setText("AGREGAR");
+        AGREGARVENTA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AGREGARVENTAActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel10.setText("AGREGAR VENTA");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addComponent(jLabel10))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addComponent(jLabel8))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(jLabel6)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtCodigoEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                            .addComponent(txtMontoVenta)
+                            .addComponent(AGREGARVENTA, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap(91, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel10)
+                .addGap(52, 52, 52)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCodigoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(54, 54, 54)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtMontoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addComponent(AGREGARVENTA)
+                .addContainerGap(88, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout AGREGARVENTAEMPLEADOLayout = new javax.swing.GroupLayout(AGREGARVENTAEMPLEADO.getContentPane());
+        AGREGARVENTAEMPLEADO.getContentPane().setLayout(AGREGARVENTAEMPLEADOLayout);
+        AGREGARVENTAEMPLEADOLayout.setHorizontalGroup(
+            AGREGARVENTAEMPLEADOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+        );
+        AGREGARVENTAEMPLEADOLayout.setVerticalGroup(
+            AGREGARVENTAEMPLEADOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Empleados Manager");
         setBackground(new java.awt.Color(0, 102, 102));
@@ -172,30 +235,45 @@ public class Menu extends javax.swing.JFrame {
         LOGO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/empleadosmanager/iconoMENU3.png"))); // NOI18N
         LOGO.setToolTipText("");
 
-        jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jButton2.setText("Listar Empleados No Despedidos");
-        jButton2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        LISTAR_EMPLEADOS.setBackground(new java.awt.Color(204, 204, 204));
+        LISTAR_EMPLEADOS.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        LISTAR_EMPLEADOS.setText("Listar Empleados No Despedidos");
+        LISTAR_EMPLEADOS.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+        LISTAR_EMPLEADOS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                LISTAR_EMPLEADOSActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(204, 204, 204));
-        jButton3.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jButton3.setText("Agregar Venta a Empleado");
-        jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+        AGREGAR_VENTA.setBackground(new java.awt.Color(204, 204, 204));
+        AGREGAR_VENTA.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        AGREGAR_VENTA.setText("Agregar Venta a Empleado");
+        AGREGAR_VENTA.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+        AGREGAR_VENTA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AGREGAR_VENTAActionPerformed(evt);
+            }
+        });
 
-        jButton4.setBackground(new java.awt.Color(204, 204, 204));
-        jButton4.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jButton4.setText("Pagar Empleado");
-        jButton4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+        PAGAR_EMPLEADO.setBackground(new java.awt.Color(204, 204, 204));
+        PAGAR_EMPLEADO.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        PAGAR_EMPLEADO.setText("Pagar Empleado");
+        PAGAR_EMPLEADO.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+        PAGAR_EMPLEADO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PAGAR_EMPLEADOActionPerformed(evt);
+            }
+        });
 
-        jButton5.setBackground(new java.awt.Color(204, 204, 204));
-        jButton5.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jButton5.setText("Despedir Empleado");
-        jButton5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+        DESPEDIR_EMPLEADO.setBackground(new java.awt.Color(204, 204, 204));
+        DESPEDIR_EMPLEADO.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        DESPEDIR_EMPLEADO.setText("Despedir Empleado");
+        DESPEDIR_EMPLEADO.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+        DESPEDIR_EMPLEADO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DESPEDIR_EMPLEADOActionPerformed(evt);
+            }
+        });
 
         CREARR.setBackground(new java.awt.Color(255, 255, 255));
         CREARR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/empleadosmanager/agregar2.png"))); // NOI18N
@@ -207,8 +285,13 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setBackground(new java.awt.Color(255, 255, 255));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/empleadosmanager/salir1.png"))); // NOI18N
+        SALIR.setBackground(new java.awt.Color(255, 255, 255));
+        SALIR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/empleadosmanager/salir1.png"))); // NOI18N
+        SALIR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SALIRActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -223,20 +306,20 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(LOGO, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(217, 217, 217)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(LISTAR_EMPLEADOS, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(217, 217, 217)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(AGREGAR_VENTA, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(217, 217, 217)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(PAGAR_EMPLEADO, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(217, 217, 217)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(DESPEDIR_EMPLEADO, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(216, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SALIR, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49))
         );
         jPanel1Layout.setVerticalGroup(
@@ -247,15 +330,15 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(LOGO, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CREARR))
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LISTAR_EMPLEADOS, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(AGREGAR_VENTA, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PAGAR_EMPLEADO, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(DESPEDIR_EMPLEADO, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SALIR, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -275,21 +358,128 @@ public class Menu extends javax.swing.JFrame {
 
     private void CREARRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CREARRActionPerformed
         // TODO add your handling code here:
-        
         AGREGAREMPLEADO.setVisible(true);
     }//GEN-LAST:event_CREARRActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void LISTAR_EMPLEADOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LISTAR_EMPLEADOSActionPerformed
+  
+    String listaEmpleados = emp.obtenerListaEmpleados();
+    
+    if (listaEmpleados.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "No hay empleados para mostrar", "Lista de Empleados", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+        // Mostrar la lista en un cuadro de diálogo
+        JTextArea textArea = new JTextArea(listaEmpleados);
+        textArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        JOptionPane.showMessageDialog(this, scrollPane, "Lista de Empleados", JOptionPane.INFORMATION_MESSAGE);
+    }
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_LISTAR_EMPLEADOSActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void AGREARALEMPLEADOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AGREARALEMPLEADOActionPerformed
+        try {
+            // Obtener la información del nuevo empleado desde los campos de texto y el date chooser
+            String nombre = txtNombre.getText();
+            double salario = Double.parseDouble(txtSalario.getText());
+
+            // Agregar el nuevo empleado a EmpleadosManager
+            emp.addEmployee(nombre, salario);
+
+            // Limpiar los campos después de agregar un nuevo empleado
+            txtNombre.setText("");
+            txtSalario.setText("");
+
+            // Mostrar un mensaje de éxito al usuario
+            JOptionPane.showMessageDialog(this, "Empleado agregado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (NumberFormatException e) {
+            // Mostrar un mensaje de error si los datos ingresados no son válidos
+            JOptionPane.showMessageDialog(this, "Error: Ingresa valores válidos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_AGREARALEMPLEADOActionPerformed
+
+    private void PAGAR_EMPLEADOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PAGAR_EMPLEADOActionPerformed
+        try {
+            int codigoEmpleado = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el código del empleado:"));
+
+            // Verificar si el empleado existe antes de pagarle
+            if (emp.isEmployeeActive(codigoEmpleado)) {
+                // Verificar si el empleado ya ha sido pagado este mes
+                if (!emp.isEmployeePayed(codigoEmpleado)) {
+                    // Pagar al empleado
+                    emp.payEmployee(codigoEmpleado);
+                    JOptionPane.showMessageDialog(this, "Pago realizado correctamente al empleado con código " + codigoEmpleado, "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error: El empleado con código " + codigoEmpleado + " ya ha sido pagado este mes", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Error: El empleado con código " + codigoEmpleado + " no existe o está despedido", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error: Ingresa un código válido", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_PAGAR_EMPLEADOActionPerformed
+
+    private void SALIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SALIRActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_SALIRActionPerformed
+
+    private void AGREGAR_VENTAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AGREGAR_VENTAActionPerformed
+        // TODO add your handling code here:
+        AGREGARVENTAEMPLEADO.setVisible(true);
+    }//GEN-LAST:event_AGREGAR_VENTAActionPerformed
+
+    private void AGREGARVENTAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AGREGARVENTAActionPerformed
+        try {
+            int codigoEmpleado = Integer.parseInt(txtCodigoEmpleado.getText());
+            double montoVenta = Double.parseDouble(txtMontoVenta.getText());
+
+            // Verificar si el empleado existe antes de agregar la venta
+            if (emp.isEmployeeActive(codigoEmpleado)) {
+                // Agregar la venta al empleado
+                emp.addSaleToEmployee(codigoEmpleado, montoVenta);
+                JOptionPane.showMessageDialog(this, "Venta agregada correctamente al empleado con código " + codigoEmpleado, "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Error: El empleado con código " + codigoEmpleado + " no existe o está despedido", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error: Ingresa valores válidos", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_AGREGARVENTAActionPerformed
+
+    private void DESPEDIR_EMPLEADOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DESPEDIR_EMPLEADOActionPerformed
+    // Solicitar el código del empleado a despedir usando JOptionPane
+    String codigoEmpleadoADespedirStr = JOptionPane.showInputDialog("Ingrese el código del empleado a despedir:");
+
+    // Verificar si se ingresó un código
+    if (codigoEmpleadoADespedirStr != null && !codigoEmpleadoADespedirStr.isEmpty()) {
+        try {
+            int codigoEmpleadoADespedir = Integer.parseInt(codigoEmpleadoADespedirStr);
+
+            // Llamar al método para despedir al empleado
+            emp.fireEmployee(codigoEmpleadoADespedir);
+
+            // Mostrar un mensaje de éxito
+            JOptionPane.showMessageDialog(this, "Empleado despedido exitosamente.");
+        } catch (NumberFormatException e) {
+            // Si el código ingresado no es un número válido
+            JOptionPane.showMessageDialog(this, "Ingrese un código de empleado válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } else {
+        // Si el usuario cancela la entrada
+        JOptionPane.showMessageDialog(this, "Operación cancelada por el usuario.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+        
+    }//GEN-LAST:event_DESPEDIR_EMPLEADOActionPerformed
 
     /**
      * @param args the command line arguments
@@ -327,25 +517,29 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AGREARALEMPLEADO;
     private javax.swing.JDialog AGREGAREMPLEADO;
+    private javax.swing.JButton AGREGARVENTA;
+    private javax.swing.JDialog AGREGARVENTAEMPLEADO;
+    private javax.swing.JButton AGREGAR_VENTA;
     private javax.swing.JButton CREARR;
+    private javax.swing.JButton DESPEDIR_EMPLEADO;
+    private javax.swing.JButton LISTAR_EMPLEADOS;
     private javax.swing.JButton LOGO;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton PAGAR_EMPLEADO;
+    private javax.swing.JButton SALIR;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField txtCodigoEmpleado;
+    private javax.swing.JTextField txtMontoVenta;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtSalario;
     // End of variables declaration//GEN-END:variables
 }
